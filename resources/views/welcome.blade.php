@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>ATAPRO</title>
+  <title>DNICYT</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -48,6 +48,10 @@
 
     .boton-descargar:hover {
         background-color: #0056b3;
+    }
+    .responsive-img {
+        max-width: 150%;
+        height: auto;
     }
 </style>
 </head>
@@ -275,61 +279,16 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Resume</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Distribución de Equipos</h2>
+          <p>Categoria 1: Formativo</p>
+          <p>Categoria 2: Profesionalizante</p>
+          <p>Categoria 3: Institucional</p>
+          <p>Categoria 4: Tecnológico</p>
         </div>
 
         <div class="row">
           <div class="col-lg-6" data-aos="fade-up">
-            <h3 class="resume-title">Sumary</h3>
-            <div class="resume-item pb-0">
-              <h4>Alex Smith</h4>
-              <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
-              <ul>
-                <li>Portland par 127,Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
-              </ul>
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Fine Arts &amp; Graphic Design</h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div>
-            <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
-              <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-              </ul>
-            </div>
+            <center><img src="./assets/img/distribucion.PNG" class="responsive-img"  alt="" srcset=""></center>
           </div>
         </div>
 
@@ -341,21 +300,52 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Lista de proyectos</h2>
+          <p></p>
         </div>
-
+        <div>
         <div class="row" data-aos="fade-up">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-formativo">Formativo</li>
+              <li data-filter=".filter-pro">Profesionalizantes</li>
+              <li data-filter=".filter-ins">Institucionales</li>
+              <li data-filter=".filter-tec">Tecnológico</li>
+              <li data-filter=".filter-mil">Militar</li>
             </ul>
           </div>
+        </div>         
+          <div class="table-responsive project filter-for" >
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          <th>Proyecto</th>
+                          <th>Unidad Académica</th>
+                          <th>Categoría</th>
+                          <th>Investigador</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($proyectos as $proyecto)
+                          <tr class="filter-{{$proyecto->categoria}}">
+                              <td>{{ $proyecto->nombre }}</td>
+                              <td>{{ $proyecto->unidad_academica }}</td>
+                              <td>{{ $proyecto->categoria }}</td>
+                              <td>
+                                  <ul>
+                                  @foreach($proyecto->investigadores()->get() as $investigador)
+                                      <li>{{ $investigador->nombre }}</li>
+                                  @endforeach
+                                  </ul>
+                              </td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          </div>
         </div>
-
+        <!--
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
@@ -368,7 +358,7 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-formativo">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-links">
@@ -448,7 +438,7 @@
             </div>
           </div>
 
-        </div>
+        </div>-->
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -658,7 +648,7 @@
   <footer id="footer">
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Dirección Nacional de Investigación Cinecia y Tecnología</span></strong>
+        &copy; Copyright <strong><span>Dirección Nacional de Investigación Ciencia y Tecnología</span></strong>
       </div>
 
     </div>
