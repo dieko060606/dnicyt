@@ -53,6 +53,20 @@
         max-width: 150%;
         height: auto;
     }
+    input {
+    background-color: #555;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    }
+
+    input:hover {
+        background-color: #777;
+    }
 </style>
 </head>
 
@@ -60,11 +74,17 @@
 
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
-
   <!-- ======= Header ======= -->
   <header id="header">
+    <div class="d-flex justify-content-end">
+    @if(Auth::check())
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+        </form>
+    @endif
+    </div>
     <div class="d-flex flex-column">
-
       <div class="profile">
         <img src="assets/img/DNICYT_OFI.jpg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">DNICYT</a></h1>
@@ -81,6 +101,19 @@
           <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Acerca de la Expociencia</span></a></li>
           <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Croquis de Proyectos</span></a></li>
           <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Lista de proyectos</span></a></li>
+          @if(Auth::check())
+            @if(Auth::user()->rol == 'JURADO')
+                <li><a href="{{ route('evaluaciones.index')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Realizar Evaluación</span></a></li>
+            @endif
+          @endif
+
+          @if(Auth::check())
+            @if(Auth::user()->rol == 'ADMIN' )
+            <li><a href="{{ route('evaluaciones.index')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Realizar Evaluación</span></a></li>
+            <li><a href="{{ route('proyecto.registrar')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Registrar Proyectos</span></a></li>
+            <li><a href="{{ route('investigadores.registrar')}}" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Registrar Estudiantes</span></a></li>
+            @endif
+          @endif
           <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Brochure</span></a></li>
           <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contactanos</span></a></li>
         </ul>
@@ -90,9 +123,15 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
+    
     <div class="hero-container" data-aos="fade-in">
       <h1>EXPOCIENCIA NACIONAL</h1>
       <p>Dirección Nacional de <span class="typed" data-typed-items="Investigación, Ciencia y Tecnología"></span></p>
+        @if(Auth::check())
+            @if(Auth::user()->rol == 'JURADO' || Auth::user()->rol == 'ADMIN' )
+                <p>Bienvenido, {{ Auth::user()->name }}</p>
+            @endif
+        @endif
     </div>
   </section><!-- End Hero -->
 

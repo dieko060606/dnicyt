@@ -19,3 +19,4 @@ class Proyecto extends Model
         return $this->hasMany(Evaluacion::class);
     }
 }
+

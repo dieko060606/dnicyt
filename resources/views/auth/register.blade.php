@@ -23,6 +23,17 @@
                                     </span>
                                 @enderror
                             </div>
+                            
+                            <label for="rol" class="col-md-4 col-form-label text-md-end">Rol</label>
+                            <div class="col-md-6">
+                                <input id="rol" type="text" class="form-control" name="rol" value="{{ old('rol') }}" required autocomplete="rol" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="row mb-3">

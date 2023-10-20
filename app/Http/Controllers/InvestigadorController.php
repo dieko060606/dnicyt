@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Investigador;
 use App\Models\Proyecto;
-use Illuminate\Http\Request;
-
 class InvestigadorController extends Controller
 {
     public function create()
@@ -18,7 +18,7 @@ class InvestigadorController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'unidad_academica' => 'required|in:UALP,UASC,UACB,UAT,UAR',
+            'unidad_academica' => 'required|in:UALP,UASC,UACB,UAT,UAR,CENTRAL',
             'proyecto_id' => 'required|exists:proyectos,id'
         ]);
     
