@@ -1,39 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- resources/views/investigadores/registrar.blade.php -->
+@extends('layouts.app')
 
-    <h1>Registrar Nuevo Investigador</h1>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h1 class="text-center mb-4">Registrar Nuevo Investigador</h1>
+        <form action="{{ url('/investigadores/registrar') }}" method="post">
+          @csrf
 
-    <form action="{{ url('/investigadores/registrar') }}" method="post">
-        @csrf
+          <div class="form-group">
+            <label for="nombre">Nombre del Investigador:</label>
+            <input type="text" class="form-control" name="nombre" required>
+          </div>
 
-        <label for="nombre">Nombre del Investigador:</label>
-        <input type="text" name="nombre" required><br>
+          <div class="form-group">
+            <label for="unidad_academica">Unidad Académica:</label>
+            <select class="form-control" name="unidad_academica" required>
+              <option value="UALP">UALP</option>
+              <option value="UASC">UASC</option>
+              <option value="UACB">UACB</option>
+              <option value="UAT">UAT</option>
+              <option value="UAR">UAR</option>
+            </select>
+          </div>
 
-        <label for="unidad_academica">Unidad Académica:</label>
-        <select name="unidad_academica" required>
-            <option value="UALP">UALP</option>
-            <option value="UASC">UASC</option>
-            <option value="UACB">UACB</option>
-            <option value="UAT">UAT</option>
-            <option value="UAR">UAR</option>
-        </select><br>
+          <div class="form-group">
+            <label for="proyecto_id">Proyecto Asociado:</label>
+            <select class="form-control" name="proyecto_id" required>
+              @foreach($proyectos as $proyecto)
+              <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
+              @endforeach
+            </select>
+          </div>
 
-        <label for="proyecto_id">Proyecto Asociado:</label>
-        <select name="proyecto_id" required>
-            @foreach($proyectos as $proyecto)
-                <option value="{{ $proyecto->id }}">{{ $proyecto->nombre }}</option>
-            @endforeach
-        </select><br>
-
-        <button type="submit">Registrar Investigador</button>
-    </form>
-
-</body>
-</html>
+          <button type="submit" class="btn btn-primary btn-block">Registrar Investigador</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  @endsection
